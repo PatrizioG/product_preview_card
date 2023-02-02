@@ -1,17 +1,39 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:product_preview_card/price.dart';
+import 'button.dart';
 
 class RightSide extends StatelessWidget {
   const RightSide({super.key});
 
-  TextStyle _style() {
+  TextStyle _subTitleStyle() {
     return GoogleFonts.montserrat(
-        color: Colors.grey, letterSpacing: 3.0, fontWeight: FontWeight.w700);
+        // Dark grayish blue: hsl(228, 12%, 48%)
+        color: const HSLColor.fromAHSL(1, 228, 0.12, 0.48).toColor(),
+        letterSpacing: 3.0,
+        fontWeight: FontWeight.w500);
   }
 
-  TextStyle _description_style() {
+  TextStyle _titleStyle() {
+    return GoogleFonts.fraunces(
+      fontWeight: FontWeight.bold,
+      fontSize: 32,
+      height: 0.9,
+    );
+  }
+
+  TextStyle _descriptionStyle() {
     return GoogleFonts.montserrat(
-        color: Colors.grey, fontWeight: FontWeight.w500, height: 1.5);
+        color: const HSLColor.fromAHSL(1, 228, 0.12, 0.48).toColor(),
+        fontWeight: FontWeight.w500,
+        height: 1.5);
+  }
+
+  TextStyle _priceStyle() {
+    return GoogleFonts.montserrat(
+        color: const HSLColor.fromAHSL(1, 228, 0.12, 0.48).toColor(),
+        fontWeight: FontWeight.w500,
+        height: 1.5);
   }
 
   @override
@@ -23,40 +45,23 @@ class RightSide extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
-            child: Text('PERFUME', style: _style()),
+            child: Text('PERFUME', style: _subTitleStyle()),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Text(
               'Gabrielle Essence Eau De Parfum',
-              style: GoogleFonts.fraunces(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                height: 0.9,
-              ),
+              style: _titleStyle(),
             ),
           ),
           Expanded(
             child: Text(
               "A floral, solar and voluptuous interpretation composed by Olivier Polge, Perfumer-Creator for the House of CHANEL.",
-              style: _description_style(),
+              style: _descriptionStyle(),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: const HSLColor.fromAHSL(1, 158, 0.36, 0.37).toColor(),
-                borderRadius: const BorderRadius.all((Radius.circular(10)))),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.shopping_cart_outlined),
-                  Text("Add to Cart"),
-                ],
-              ),
-            ),
-          )
+          const Price('\$169.99', '\$149.99'),
+          const Button()
         ],
       ),
     );

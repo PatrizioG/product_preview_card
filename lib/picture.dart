@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Picture extends StatelessWidget {
   const Picture(this.isDesktop, {Key? key}) : super(key: key);

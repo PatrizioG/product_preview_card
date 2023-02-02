@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:product_preview_card/picture.dart';
 import 'package:product_preview_card/right_side.dart';
 
@@ -12,43 +12,40 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.blue,
-          backgroundColor:
-              const HSLColor.fromAHSL(1, 30, 0.38, 0.92).toColor()),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return MediaQuery(
+      data: const MediaQueryData(),
+      child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Container(
+            decoration: BoxDecoration(
+                color: const HSLColor.fromAHSL(1, 30, 0.38, 0.92).toColor()),
+            child: const MyHomePage(),
+          )),
     );
   }
 }
 
+//const
+
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     bool isDesktop = MediaQuery.of(context).size.width > 375;
-
-    return DefaultTextStyle(
-      style: const TextStyle(),
+    isDesktop = true;
+    return Center(
       child: Container(
-        decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
-        child: Center(
-          child: Container(
-            width: 600,
-            height: 450,
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all((Radius.circular(10)))),
-            child: Row(
-              children: [
-                Expanded(child: Picture(isDesktop)),
-                const Expanded(child: RightSide())
-              ],
-            ),
-          ),
+        width: 600,
+        height: 450,
+        decoration: const BoxDecoration(
+            color: Color.fromRGBO(255, 255, 255, 1),
+            borderRadius: BorderRadius.all((Radius.circular(10)))),
+        child: Row(
+          children: [
+            Expanded(child: Picture(isDesktop)),
+            const Expanded(child: RightSide())
+          ],
         ),
       ),
     );

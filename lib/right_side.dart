@@ -29,13 +29,6 @@ class RightSide extends StatelessWidget {
         height: 1.5);
   }
 
-  TextStyle _priceStyle() {
-    return GoogleFonts.montserrat(
-        color: const HSLColor.fromAHSL(1, 228, 0.12, 0.48).toColor(),
-        fontWeight: FontWeight.w500,
-        height: 1.5);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(

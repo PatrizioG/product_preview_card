@@ -12,28 +12,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MediaQuery(
-      data: const MediaQueryData(),
-      child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: Container(
-            decoration: BoxDecoration(
-                color: const HSLColor.fromAHSL(1, 30, 0.38, 0.92).toColor()),
-            child: const MyHomePage(),
-          )),
-    );
+    return MediaQuery.fromWindow(
+        child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: const HSLColor.fromAHSL(1, 30, 0.38, 0.92).toColor()),
+              child: const MyHomePage(),
+            )));
   }
 }
-
-//const
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool isDesktop = MediaQuery.of(context).size.width > 375;
-    isDesktop = true;
+    bool isDesktop = MediaQuery.of(context).size.width > 800;
     return Center(
       child: Container(
         width: 600,
@@ -41,12 +36,17 @@ class MyHomePage extends StatelessWidget {
         decoration: const BoxDecoration(
             color: Color.fromRGBO(255, 255, 255, 1),
             borderRadius: BorderRadius.all((Radius.circular(10)))),
-        child: Row(
-          children: [
-            Expanded(child: Picture(isDesktop)),
-            const Expanded(child: RightSide())
-          ],
-        ),
+        child: isDesktop
+            ? Row(
+                children: [
+                  Expanded(child: Picture(isDesktop)),
+                  const Expanded(child: RightSide())
+                ],
+              )
+            : Column(children: [
+                Expanded(child: Picture(isDesktop)),
+                const Expanded(child: RightSide())
+              ]),
       ),
     );
   }

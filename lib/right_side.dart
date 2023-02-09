@@ -4,7 +4,8 @@ import 'package:product_preview_card/price.dart';
 import 'button.dart';
 
 class RightSide extends StatelessWidget {
-  const RightSide({super.key});
+  const RightSide(this.isDesktop, {super.key});
+  final bool isDesktop;
 
   TextStyle _subTitleStyle() {
     return GoogleFonts.montserrat(
@@ -16,6 +17,7 @@ class RightSide extends StatelessWidget {
 
   TextStyle _titleStyle() {
     return GoogleFonts.fraunces(
+      color: const Color.fromRGBO(0, 0, 0, 1),
       fontWeight: FontWeight.bold,
       fontSize: 32,
       height: 0.9,
@@ -32,7 +34,8 @@ class RightSide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(32.0),
+      padding:
+          isDesktop ? const EdgeInsets.all(32.0) : const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -7,7 +7,9 @@ class Picture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.horizontal(left: Radius.circular(10)),
+      borderRadius: isDesktop
+          ? const BorderRadius.horizontal(left: Radius.circular(10))
+          : const BorderRadius.vertical(top: Radius.circular(10)),
       child: Image(
           image: AssetImage(isDesktop
               ? "images/image-product-desktop.jpg"

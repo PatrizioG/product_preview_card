@@ -28,24 +28,28 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDesktop = MediaQuery.of(context).size.width > 800;
+    bool isDesktop = MediaQuery.of(context).size.width > 630;
     return Center(
       child: Container(
-        width: 600,
-        height: 450,
+        margin: const EdgeInsets.all(10),
+        constraints: BoxConstraints(
+          maxWidth: isDesktop ? 600 : 343,
+          maxHeight: isDesktop ? 450 : 620,
+        ),
+        //height: isDesktop ? 450 : 480,
         decoration: const BoxDecoration(
             color: Color.fromRGBO(255, 255, 255, 1),
             borderRadius: BorderRadius.all((Radius.circular(10)))),
         child: isDesktop
             ? Row(
                 children: [
-                  Expanded(child: Picture(isDesktop)),
-                  const Expanded(child: RightSide())
+                  Picture(isDesktop),
+                  Expanded(child: RightSide(isDesktop))
                 ],
               )
             : Column(children: [
-                Expanded(child: Picture(isDesktop)),
-                const Expanded(child: RightSide())
+                Picture(isDesktop),
+                Expanded(child: RightSide(isDesktop))
               ]),
       ),
     );
